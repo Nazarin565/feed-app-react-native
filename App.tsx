@@ -1,11 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
+import { AuthNavigator } from "./navigation/AuthNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import { useState } from "react";
+import { AppNavigator } from "./navigation/AppNavigator";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
+  const [isLogined, setIsLogined] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Start project!</Text>
-      <StatusBar style="auto" />
+      <NavigationContainer>
+        {isLogined ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -13,8 +21,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
