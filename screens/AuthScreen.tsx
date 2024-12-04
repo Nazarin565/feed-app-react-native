@@ -1,6 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
+  Alert,
   Button,
   SafeAreaView,
   StyleSheet,
@@ -9,8 +10,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { successLogin } from "../store/slices/authSlice";
+
+const validData = {
+  email: "test@test.test",
+  password: "Qwerty12345",
+};
 
 export const AuthScreen = () => {
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -22,7 +32,13 @@ export const AuthScreen = () => {
     },
   });
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    if (JSON.stringify(data) === JSON.stringify(validData)) {
+      dispatch(successLogin());
+    } else {
+      Alert.alert("Incorrect data. Try again");
+    }
+  };
 
   return (
     <View style={styles.container}>

@@ -1,17 +1,13 @@
 import { StyleSheet, View } from "react-native";
 import { AuthNavigator } from "./navigation/AuthNavigator";
 import { NavigationContainer } from "@react-navigation/native";
-import { useState } from "react";
 import { AppNavigator } from "./navigation/AppNavigator";
 import { StatusBar } from "expo-status-bar";
-
-// const validData = {
-//   email: "test@test.test",
-//   password: "Qwerty12345",
-// };
+import { useSelector } from "react-redux";
+import { RootState, store } from "./store/store";
 
 export default function App() {
-  const [isLogined, setIsLogined] = useState(false);
+  const { isLogined } = useSelector((state: RootState) => state.auth);
 
   return (
     <View style={styles.container}>
