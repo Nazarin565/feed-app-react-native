@@ -5,6 +5,11 @@ import { useState } from "react";
 import { AppNavigator } from "./navigation/AppNavigator";
 import { StatusBar } from "expo-status-bar";
 
+// const validData = {
+//   email: "test@test.test",
+//   password: "Qwerty12345",
+// };
+
 export default function App() {
   const [isLogined, setIsLogined] = useState(false);
 
