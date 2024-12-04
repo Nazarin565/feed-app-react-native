@@ -1,8 +1,18 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 export const ProfileScreen = () => {
   return (
-    <Text>ProfileScreen</Text>
-  )
-}
+    <View style={styles.container}>
+      <Text>ProfileScreen</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#677179",
+    paddingInline: 8,
+  },
+});

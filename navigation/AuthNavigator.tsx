@@ -6,12 +6,12 @@ const Stack = createStackNavigator();
 
 export const AuthNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Auth"
-        component={AuthScreen}
-        options={{ title: "Login" }}
-      />
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Auth" component={AuthScreen} />
     </Stack.Navigator>
   );
 };

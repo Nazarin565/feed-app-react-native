@@ -1,8 +1,19 @@
-import React from 'react'
-import { Text } from 'react-native'
+import React from "react";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 export const AuthScreen = () => {
   return (
-    <Text>AuthScreen</Text>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Text style={{ color: "white" }}>AuthScreen</Text>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#3D464E",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
