@@ -2,8 +2,6 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   Alert,
-  Button,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -12,8 +10,9 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { successLogin } from "../store/slices/authSlice";
+import { UserLoginDataType } from "../types/UserType";
 
-const validData = {
+const validData: UserLoginDataType = {
   email: "test@test.test",
   password: "Qwerty12345",
 };
@@ -25,16 +24,16 @@ export const AuthScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<UserLoginDataType>({
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: UserLoginDataType) => {
     if (JSON.stringify(data) === JSON.stringify(validData)) {
-      dispatch(successLogin());
+      dispatch(successLogin(data.email));
     } else {
       Alert.alert("Incorrect data. Try again");
     }
@@ -62,6 +61,7 @@ export const AuthScreen = () => {
               style={styles.input}
               textContentType="emailAddress"
               keyboardType="email-address"
+              autoCapitalize="none"
             />
           )}
           name="email"
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     display: "flex",
     padding: 12,
     alignItems: "center",
+    borderRadius: 12,
   },
   buttonText: {
     color: "#fff",

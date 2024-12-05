@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Button,
   FlatList,
-  Image,
   RefreshControl,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 import { getImageList } from "../services/api";
 import { ImageCardType } from "../types/ImageCardType";
 import { ImageCard } from "../components/ImageCard";
-import { getRandomPage } from "../utils/helpers";
+import { getRandomNumber } from "../utils/helpers";
 
 export const FeedScreen = () => {
   const [imgList, setImgList] = useState<ImageCardType[]>([]);
@@ -21,7 +18,7 @@ export const FeedScreen = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const page = getRandomPage(100);
+    const page = getRandomNumber(100);
     getImageList(page).then((data) => {
       setImgList(data);
       setFirstPage(page);
@@ -30,7 +27,7 @@ export const FeedScreen = () => {
   }, []);
 
   const onRefresh = () => {
-    const page = getRandomPage(100);
+    const page = getRandomNumber(100);
     getImageList(page).then((data) => {
       setImgList(data);
       setFirstPage(page);
@@ -82,7 +79,7 @@ export const FeedScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#677179",
+    backgroundColor: "#3D464E",
     paddingInline: 8,
   },
 });

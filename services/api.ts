@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const client = axios.create({
+const clientImages = axios.create({
   baseURL: "https://picsum.photos",
   headers: {
     "Cache-Control": "no-cache",
@@ -9,9 +9,28 @@ const client = axios.create({
 
 export const getImageList = async (page: number) => {
   try {
-    const response = await client.get(`/v2/list?page=${page}&limit=10`);
+    const response = await clientImages.get(`/v2/list?page=${page}&limit=10`);
 
     return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const clientUsers = axios.create({
+  baseURL: "https://reqres.in",
+  headers: {
+    "Cache-Control": "no-cache",
+  },
+});
+
+export const getUser = async (num: number) => {
+  try {
+    const response = await clientUsers.get(`/api/users/${num}`);
+
+    console.log(response.data.data);
+
+    return response.data.data;
   } catch (error) {
     console.error(error);
   }
