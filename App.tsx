@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AppNavigator } from "./navigation/AppNavigator";
 import { StatusBar } from "expo-status-bar";
 import { useSelector } from "react-redux";
-import { RootState, store } from "./store/store";
+import { RootState } from "./store/store";
 
 export default function App() {
   const { isLogined } = useSelector((state: RootState) => state.auth);
