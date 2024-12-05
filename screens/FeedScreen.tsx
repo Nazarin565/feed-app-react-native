@@ -12,6 +12,7 @@ import {
 import { getImageList } from "../services/api";
 import { ImageCardType } from "../types/ImageCardType";
 import { ImageCard } from "../components/ImageCard";
+import { getRandomPage } from "../utils/helpers";
 
 export const FeedScreen = () => {
   const [imgList, setImgList] = useState<ImageCardType[]>([]);
@@ -20,7 +21,7 @@ export const FeedScreen = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const page = Math.floor(Math.random() * 100 + 1);
+    const page = getRandomPage(100);
     getImageList(page).then((data) => {
       setImgList(data);
       setFirstPage(page);
@@ -29,7 +30,7 @@ export const FeedScreen = () => {
   }, []);
 
   const onRefresh = () => {
-    const page = Math.floor(Math.random() * 100 + 1);
+    const page = getRandomPage(100);
     getImageList(page).then((data) => {
       setImgList(data);
       setFirstPage(page);
