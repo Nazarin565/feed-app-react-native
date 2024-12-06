@@ -3,10 +3,18 @@ import { AuthNavigator } from "./navigation/AuthNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import { AppNavigator } from "./navigation/AppNavigator";
 import { StatusBar } from "expo-status-bar";
-import { useSelector } from "react-redux";
-import { RootState } from "./store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./store/store";
+import { useEffect } from "react";
+import { loadAuthState } from "./store/slices/authSlice";
 
 export default function App() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(loadAuthState());
+  }, []);
+
   const { isLogined } = useSelector((state: RootState) => state.auth);
 
   return (

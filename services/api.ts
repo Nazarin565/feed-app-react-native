@@ -28,8 +28,6 @@ export const getUser = async (num: number) => {
   try {
     const response = await clientUsers.get(`/api/users/${num}`);
 
-    console.log(response.data.data);
-
     return response.data.data;
   } catch (error) {
     console.error(error);

@@ -12,10 +12,10 @@ import { useDispatch } from "react-redux";
 import { successLogin } from "../store/slices/authSlice";
 import { UserLoginDataType } from "../types/UserType";
 
-const validData: UserLoginDataType = {
-  email: "test@test.test",
-  password: "Qwerty12345",
-};
+// const validData: UserLoginDataType = {
+//   email: "test@test.test",
+//   password: "Qwerty12345",
+// };
 
 export const AuthScreen = () => {
   const dispatch = useDispatch();
@@ -32,11 +32,11 @@ export const AuthScreen = () => {
   });
 
   const onSubmit = (data: UserLoginDataType) => {
-    if (JSON.stringify(data) === JSON.stringify(validData)) {
-      dispatch(successLogin(data.email));
-    } else {
-      Alert.alert("Incorrect data. Try again");
-    }
+    // if (JSON.stringify(data) === JSON.stringify(validData)) {
+    dispatch(successLogin(data.email));
+    // } else {
+    //   Alert.alert("Incorrect data. Try again");
+    // }
   };
 
   return (
