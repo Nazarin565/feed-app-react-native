@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { successLogin } from "../store/slices/authSlice";
 import { UserLoginDataType } from "../types/UserType";
 
+// YOU CAN UNCOMMENT FOR ACCURATE DATA
 // const validData: UserLoginDataType = {
 //   email: "test@test.test",
 //   password: "Qwerty12345",
@@ -32,6 +33,7 @@ export const AuthScreen = () => {
   });
 
   const onSubmit = (data: UserLoginDataType) => {
+    // YOU CAN UNCOMMENT FOR ACCURATE DATA
     // if (JSON.stringify(data) === JSON.stringify(validData)) {
     dispatch(successLogin(data.email));
     // } else {
