@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store/store";
 import { useEffect } from "react";
 import { loadAuthState } from "./store/slices/authSlice";
+import { loadCurrentTheme, setTheme } from "./store/slices/themeSlice";
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(loadAuthState());
+    dispatch(loadCurrentTheme());
   }, []);
 
   const { isLogined } = useSelector((state: RootState) => state.auth);

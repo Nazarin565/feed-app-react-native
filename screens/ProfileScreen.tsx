@@ -6,9 +6,12 @@ import { getRandomNumber } from "../utils/helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { logout } from "../store/slices/authSlice";
+import { setTheme } from "../store/slices/themeSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const ProfileScreen = () => {
   const { email } = useSelector((state: RootState) => state.auth);
+  const { currentTheme } = useSelector((state: RootState) => state.theme);
   const [user, setUser] = useState<UserType>();
   const dispatch = useDispatch();
 
@@ -17,8 +20,19 @@ export const ProfileScreen = () => {
     getUser(num).then(setUser);
   }, []);
 
+  const toogleTheme = () => {
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    dispatch(setTheme(newTheme));
+    AsyncStorage.setItem("theme", currentTheme);
+  };
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: currentTheme === "dark" ? "#3D464E" : "#F0F4F8" },
+      ]}
+    >
       <View style={styles.profile}>
         <Image source={{ uri: user?.avatar }} style={styles.avatar} />
 
@@ -29,8 +43,10 @@ export const ProfileScreen = () => {
       </View>
 
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Change theme to light</Text>
+        <TouchableOpacity style={styles.button} onPress={toogleTheme}>
+          <Text style={styles.buttonText}>
+            Change theme to {currentTheme === "dark" ? "light" : "dark"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
